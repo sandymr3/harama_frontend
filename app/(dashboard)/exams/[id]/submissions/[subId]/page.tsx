@@ -152,7 +152,7 @@ export default function GradingReviewPage() {
       <div className="p-6">
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-12">
-            <h3 className="text-lg font-medium text-gray-900">Submission not found</h3>
+            <h3 className="text-lg font-medium text-white">Submission not found</h3>
           </CardContent>
         </Card>
       </div>
@@ -173,10 +173,10 @@ export default function GradingReviewPage() {
           <ChevronLeft className="w-4 h-4 mr-2" />
           Back
         </Button>
-        <h1 className="text-3xl font-bold text-gray-900">
+        <h1 className="text-3xl font-bold text-white">
           Submission Review
         </h1>
-        <div className="flex gap-4 mt-2 text-sm text-gray-600">
+        <div className="flex gap-4 mt-2 text-sm text-slate-400">
           <span>Student: {submission.student_id}</span>
           <span>•</span>
           <span>Status: {submission.processing_status}</span>
@@ -185,11 +185,11 @@ export default function GradingReviewPage() {
 
       {/* Status Card */}
       {submission.processing_status === 'pending' && (
-        <Card className="bg-blue-50 border-blue-200">
+        <Card className="bg-blue-950/30 border-blue-500/20">
           <CardContent className="pt-6 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <AlertCircle className="w-5 h-5 text-blue-600" />
-              <p className="text-sm text-blue-900">
+              <AlertCircle className="w-5 h-5 text-blue-400" />
+              <p className="text-sm text-blue-300">
                 This submission hasn't been graded yet.
               </p>
             </div>
@@ -205,11 +205,11 @@ export default function GradingReviewPage() {
       )}
 
       {grades.length === 0 && submission.processing_status !== 'pending' ? (
-        <Card className="bg-amber-50 border-amber-200">
+        <Card className="bg-amber-950/30 border-amber-500/20">
           <CardContent className="pt-6 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <AlertCircle className="w-5 h-5 text-amber-600" />
-              <p className="text-sm text-amber-900">
+              <AlertCircle className="w-5 h-5 text-amber-400" />
+              <p className="text-sm text-amber-300">
                 No grades available yet.
               </p>
             </div>
@@ -235,7 +235,7 @@ export default function GradingReviewPage() {
               <CardContent className="space-y-4">
                 {submission.ocr_results?.[currentQuestionIdx] && (
                   <div>
-                    <p className="text-sm font-medium text-gray-700 mb-2">
+                    <p className="text-sm font-medium text-slate-300 mb-2">
                       OCR Confidence:{' '}
                       <Badge variant="outline">
                         {(
@@ -245,7 +245,7 @@ export default function GradingReviewPage() {
                       </Badge>
                     </p>
                     {submission.ocr_results[currentQuestionIdx].image_url && (
-                      <div className="bg-gray-100 p-4 rounded-lg">
+                      <div className="bg-slate-800/50 p-4 rounded-lg">
                         <img
                           src={submission.ocr_results[
                             currentQuestionIdx
@@ -259,10 +259,10 @@ export default function GradingReviewPage() {
                 )}
 
                 <div>
-                  <p className="text-sm font-medium text-gray-700 mb-2">
+                  <p className="text-sm font-medium text-slate-300 mb-2">
                     Extracted Text:
                   </p>
-                  <p className="text-gray-700 bg-gray-50 p-3 rounded-lg">
+                  <p className="text-slate-300 bg-slate-800/50 p-3 rounded-lg">
                     {submission.answers[currentQuestionIdx]?.text ||
                       'No text extracted'}
                   </p>
@@ -280,29 +280,29 @@ export default function GradingReviewPage() {
               <CardContent className="space-y-4">
                 <div className="grid grid-cols-3 gap-4">
                   <div>
-                    <p className="text-sm text-gray-600">Score</p>
-                    <p className="text-2xl font-bold text-gray-900">
+                    <p className="text-sm text-slate-400">Score</p>
+                    <p className="text-2xl font-bold text-white">
                       {currentGrade.final_score.toFixed(1)}
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Confidence</p>
-                    <p className="text-2xl font-bold text-gray-900">
+                    <p className="text-sm text-slate-400">Confidence</p>
+                    <p className="text-2xl font-bold text-white">
                       {(currentGrade.confidence * 100).toFixed(0)}%
                     </p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">Status</p>
+                    <p className="text-sm text-slate-400">Status</p>
                     <Badge className="mt-1">{currentGrade.status}</Badge>
                   </div>
                 </div>
 
                 {currentGrade.reasoning && (
                   <div>
-                    <p className="text-sm font-medium text-gray-700 mb-2">
+                    <p className="text-sm font-medium text-slate-300 mb-2">
                       AI Reasoning:
                     </p>
-                    <p className="text-gray-700 bg-gray-50 p-3 rounded-lg">
+                    <p className="text-slate-300 bg-slate-800/50 p-3 rounded-lg">
                       {currentGrade.reasoning}
                     </p>
                   </div>
@@ -392,7 +392,7 @@ export default function GradingReviewPage() {
             </Button>
 
             <div className="flex-1 flex items-center justify-center">
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-slate-400">
                 Question {currentQuestionIdx + 1} of {grades.length}
               </p>
             </div>

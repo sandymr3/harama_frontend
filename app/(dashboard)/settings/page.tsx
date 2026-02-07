@@ -41,8 +41,8 @@ export default function SettingsPage() {
     <div className="space-y-6 p-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Settings</h1>
-        <p className="text-gray-600 mt-1">Manage your account and preferences</p>
+        <h1 className="text-3xl font-bold text-white">Settings</h1>
+        <p className="text-slate-400 mt-1">Manage your account and preferences</p>
       </div>
 
       {/* API Configuration */}
@@ -60,11 +60,11 @@ export default function SettingsPage() {
               id="api-url"
               value={process.env.NEXT_PUBLIC_API_URL || ''}
               readOnly
-              className="bg-gray-50"
+              className="bg-slate-800/50"
             />
-            <p className="text-xs text-gray-600 mt-1">
+            <p className="text-xs text-slate-400 mt-1">
               This is configured in your environment variables. Update{' '}
-              <code className="bg-gray-100 px-2 py-1 rounded">
+              <code className="bg-slate-800 px-2 py-1 rounded text-blue-400">
                 NEXT_PUBLIC_API_URL
               </code>{' '}
               in your project settings.
@@ -80,7 +80,7 @@ export default function SettingsPage() {
           <CardDescription>Manage your authentication</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-slate-400">
             Your account is secured with Supabase Auth using JWT tokens. All API
             requests are authenticated automatically.
           </p>
@@ -97,11 +97,11 @@ export default function SettingsPage() {
       </Card>
 
       {/* About */}
-      <Card className="bg-blue-50 border-blue-200">
+      <Card className="bg-blue-950/30 border-blue-500/20">
         <CardHeader>
-          <CardTitle className="text-blue-900">About HARaMA</CardTitle>
+          <CardTitle className="text-blue-300">About HARaMA</CardTitle>
         </CardHeader>
-        <CardContent className="text-sm text-blue-800 space-y-2">
+        <CardContent className="text-sm text-blue-400 space-y-2">
           <p>
             HARaMA (Handwritten Analysis and Mark Allocation) is an AI-powered
             exam grading system that uses machine learning to automatically

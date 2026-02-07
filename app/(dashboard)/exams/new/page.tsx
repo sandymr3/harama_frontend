@@ -126,12 +126,12 @@ export default function CreateExamPage() {
   }
 
   return (
-    <div className="space-y-8 p-6 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 min-h-screen">
+    <div className="space-y-8 p-6 bg-gradient-to-br from-slate-950 to-slate-900 min-h-screen">
       <div className="max-w-4xl mx-auto space-y-8">
         {/* Header */}
         <div className="space-y-2">
           <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">Create New Exam</h1>
-          <p className="text-slate-600 dark:text-slate-400">Set up your exam with questions and answer keys</p>
+          <p className="text-slate-400">Set up your exam with questions and answer keys</p>
         </div>
 
         {/* Progress Steps */}
@@ -148,16 +148,16 @@ export default function CreateExamPage() {
                       ? 'bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg scale-110'
                       : isComplete
                       ? 'bg-green-500 text-white'
-                      : 'bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300'
+                      : 'bg-slate-700 text-slate-300'
                   }`}
                 >
                   {isComplete ? '✓' : i + 1}
                 </button>
                 <div className="hidden md:block">
-                  <p className={`text-xs font-semibold uppercase tracking-wider ${isActive ? 'text-blue-600 dark:text-blue-400' : 'text-slate-600 dark:text-slate-400'}`}>{s}</p>
+                  <p className={`text-xs font-semibold uppercase tracking-wider ${isActive ? 'text-blue-400' : 'text-slate-400'}`}>{s}</p>
                 </div>
                 {i < 2 && (
-                  <div className={`flex-1 h-1 rounded-full mx-1 ${isComplete || isActive ? 'bg-blue-600' : 'bg-slate-200 dark:bg-slate-700'}`} />
+                  <div className={`flex-1 h-1 rounded-full mx-1 ${isComplete || isActive ? 'bg-blue-600' : 'bg-slate-700'}`} />
                 )}
               </div>
             )
@@ -213,8 +213,8 @@ export default function CreateExamPage() {
 
         {/* Step: Questions */}
         {step === 'questions' && (
-          <Card className="border-0 shadow-lg dark:bg-slate-800/50 dark:border dark:border-slate-700">
-            <CardHeader className="border-b border-slate-200 dark:border-slate-700">
+          <Card className="border-0 shadow-lg bg-slate-800/50 border border-slate-700">
+            <CardHeader className="border-b border-slate-700">
               <CardTitle className="text-2xl">Add Questions</CardTitle>
               <CardDescription>Create and manage exam questions</CardDescription>
             </CardHeader>
@@ -223,10 +223,10 @@ export default function CreateExamPage() {
               {questions.length > 0 && (
                 <div className="space-y-3 pb-4 border-b">
                   {questions.map((q) => (
-                    <div key={q.id} className="flex items-start justify-between p-3 bg-gray-50 rounded-lg">
+                    <div key={q.id} className="flex items-start justify-between p-3 bg-slate-800/50 rounded-lg">
                       <div className="flex-1">
-                        <p className="font-medium text-gray-900">{q.question_text}</p>
-                        <div className="flex gap-3 mt-2 text-sm text-gray-600">
+                        <p className="font-medium text-white">{q.question_text}</p>
+                        <div className="flex gap-3 mt-2 text-sm text-slate-400">
                           <span>{q.answer_type}</span>
                           <span>•</span>
                           <span>{q.points} marks</span>
@@ -334,29 +334,29 @@ export default function CreateExamPage() {
 
       {/* Step: Review */}
       {step === 'review' && (
-        <Card className="border-0 shadow-lg dark:bg-slate-800/50 dark:border dark:border-slate-700">
-          <CardHeader className="border-b border-slate-200 dark:border-slate-700">
+        <Card className="border-0 shadow-lg bg-slate-800/50 border border-slate-700">
+          <CardHeader className="border-b border-slate-700">
             <CardTitle className="text-2xl">Review & Create</CardTitle>
             <CardDescription>Verify all details before finalizing</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6 pt-6">
               <div>
-                <h3 className="font-medium text-gray-900 mb-2">Exam Details</h3>
+                <h3 className="font-medium text-white mb-2">Exam Details</h3>
                 <dl className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <dt className="text-gray-600">Title:</dt>
+                    <dt className="text-slate-400">Title:</dt>
                     <dd className="font-medium">{title}</dd>
                   </div>
                   <div className="flex justify-between">
-                    <dt className="text-gray-600">Subject:</dt>
+                    <dt className="text-slate-400">Subject:</dt>
                     <dd className="font-medium">{subject}</dd>
                   </div>
                   <div className="flex justify-between">
-                    <dt className="text-gray-600">Questions:</dt>
+                    <dt className="text-slate-400">Questions:</dt>
                     <dd className="font-medium">{questions.length}</dd>
                   </div>
                   <div className="flex justify-between">
-                    <dt className="text-gray-600">Total Points:</dt>
+                    <dt className="text-slate-400">Total Points:</dt>
                     <dd className="font-medium">
                       {questions.reduce((sum, q) => sum + q.points, 0)}
                     </dd>
@@ -365,14 +365,14 @@ export default function CreateExamPage() {
               </div>
 
               <div>
-                <h3 className="font-medium text-gray-900 mb-3">Questions</h3>
+                <h3 className="font-medium text-white mb-3">Questions</h3>
                 <div className="space-y-2">
                   {questions.map((q, i) => (
-                    <div key={q.id} className="text-sm p-2 bg-gray-50 rounded">
+                    <div key={q.id} className="text-sm p-2 bg-slate-800/50 rounded">
                       <p className="font-medium">
                         Q{i + 1}. {q.question_text}
                       </p>
-                      <p className="text-gray-600 text-xs mt-1">
+                      <p className="text-slate-400 text-xs mt-1">
                         {q.answer_type} • {q.points} points
                       </p>
                     </div>

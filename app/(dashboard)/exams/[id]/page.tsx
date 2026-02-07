@@ -56,8 +56,8 @@ export default function ExamDetailsPage() {
       <div className="p-6">
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-12">
-            <BookOpen className="w-12 h-12 text-gray-400 mb-4" />
-            <h3 className="text-lg font-medium text-gray-900">Exam not found</h3>
+            <BookOpen className="w-12 h-12 text-slate-500 mb-4" />
+            <h3 className="text-lg font-medium text-white">Exam not found</h3>
           </CardContent>
         </Card>
       </div>
@@ -69,8 +69,8 @@ export default function ExamDetailsPage() {
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">{exam.title}</h1>
-          <div className="flex gap-4 mt-2 text-sm text-gray-600">
+          <h1 className="text-3xl font-bold text-white">{exam.title}</h1>
+          <div className="flex gap-4 mt-2 text-sm text-slate-400">
             <span>Subject: {exam.subject}</span>
             <span>•</span>
             <span>Created: {new Date(exam.created_at).toLocaleDateString()}</span>
@@ -88,7 +88,7 @@ export default function ExamDetailsPage() {
       {exam.description && (
         <Card>
           <CardContent className="pt-6">
-            <p className="text-gray-700">{exam.description}</p>
+            <p className="text-slate-300">{exam.description}</p>
           </CardContent>
         </Card>
       )}
@@ -103,7 +103,7 @@ export default function ExamDetailsPage() {
         </CardHeader>
         <CardContent>
           {exam.questions?.length === 0 ? (
-            <p className="text-gray-600">No questions added yet</p>
+            <p className="text-slate-400">No questions added yet</p>
           ) : (
             <Accordion type="single" collapsible className="w-full">
               {exam.questions?.map((question: any, i: number) => (
@@ -111,7 +111,7 @@ export default function ExamDetailsPage() {
                   <AccordionTrigger className="hover:no-underline">
                     <div className="flex items-start justify-between flex-1 text-left">
                       <div>
-                        <h3 className="font-medium text-gray-900">
+                        <h3 className="font-medium text-white">
                           Q{i + 1}. {question.question_text}
                         </h3>
                         <div className="flex gap-2 mt-2">
@@ -125,16 +125,16 @@ export default function ExamDetailsPage() {
                     <div className="space-y-4 pt-4">
                       {question.rubric && (
                         <div>
-                          <h4 className="font-medium text-gray-900 mb-2">Rubric</h4>
+                          <h4 className="font-medium text-white mb-2">Rubric</h4>
                           {question.rubric.full_credit_criteria && (
                             <div>
-                              <p className="text-sm font-medium text-gray-700 mb-2">
+                              <p className="text-sm font-medium text-slate-300 mb-2">
                                 Full Credit Criteria:
                               </p>
                               <ul className="text-sm space-y-1 ml-4">
                                 {question.rubric.full_credit_criteria.map(
                                   (criteria: any, j: number) => (
-                                    <li key={j} className="text-gray-600">
+                                    <li key={j} className="text-slate-400">
                                       • {criteria.description} ({criteria.points} points)
                                     </li>
                                   )
@@ -144,7 +144,7 @@ export default function ExamDetailsPage() {
                           )}
                           {question.rubric.key_concepts && (
                             <div className="mt-3">
-                              <p className="text-sm font-medium text-gray-700 mb-2">
+                              <p className="text-sm font-medium text-slate-300 mb-2">
                                 Key Concepts:
                               </p>
                               <div className="flex flex-wrap gap-2">
@@ -159,7 +159,7 @@ export default function ExamDetailsPage() {
                         </div>
                       )}
                       {!question.rubric && (
-                        <p className="text-sm text-gray-600">
+                        <p className="text-sm text-slate-400">
                           No rubric added yet. Add one from the submission grading page.
                         </p>
                       )}

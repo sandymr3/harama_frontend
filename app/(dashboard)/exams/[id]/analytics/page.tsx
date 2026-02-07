@@ -42,7 +42,7 @@ export default function AnalyticsPage() {
       setLoading(true)
       const [examData, trendsData] = await Promise.all([
         getExam(examId).catch(() => null),
-        getGradingTrends().catch(() => null),
+        getGradingTrends(examId).catch(() => null),
       ])
 
       setExam(examData)
@@ -93,8 +93,8 @@ export default function AnalyticsPage() {
     <div className="space-y-6 p-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Analytics</h1>
-        <p className="text-gray-600 mt-1">{exam?.title}</p>
+        <h1 className="text-3xl font-bold text-white">Analytics</h1>
+        <p className="text-slate-400 mt-1">{exam?.title}</p>
       </div>
 
       {/* Summary Stats */}
@@ -187,10 +187,10 @@ export default function AnalyticsPage() {
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={trendData}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="date" />
-                <YAxis />
-                <Tooltip />
+                <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                <XAxis dataKey="date" stroke="#94a3b8" />
+                <YAxis stroke="#94a3b8" />
+                <Tooltip contentStyle={{ backgroundColor: '#0f172a', border: '1px solid #334155', borderRadius: '8px', color: '#e2e8f0' }} />
                 <Legend />
                 <Line
                   type="monotone"
@@ -214,17 +214,17 @@ export default function AnalyticsPage() {
           {trends ? (
             <>
               <div className="flex justify-between">
-                <span className="text-gray-600">Total Submissions</span>
+                <span className="text-slate-400">Total Submissions</span>
                 <span className="font-medium">{trends.total_submissions}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Average Score</span>
+                <span className="text-slate-400">Average Score</span>
                 <span className="font-medium">
                   {trends.average_score?.toFixed(2) || 'N/A'}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Average Confidence</span>
+                <span className="text-slate-400">Average Confidence</span>
                 <span className="font-medium">
                   {trends.average_confidence
                     ? `${(trends.average_confidence * 100).toFixed(0)}%`
@@ -232,7 +232,7 @@ export default function AnalyticsPage() {
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-gray-600">Status Breakdown</span>
+                <span className="text-slate-400">Status Breakdown</span>
                 <div className="flex gap-2">
                   <Badge variant="outline">
                     {trends.auto_graded} Auto Graded
@@ -244,7 +244,7 @@ export default function AnalyticsPage() {
               </div>
             </>
           ) : (
-            <p className="text-gray-600">No analytics data available yet</p>
+            <p className="text-slate-400">No analytics data available yet</p>
           )}
         </CardContent>
       </Card>

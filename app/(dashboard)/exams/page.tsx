@@ -59,7 +59,7 @@ export default function ExamsPage() {
       <div className="flex items-center justify-between relative z-10">
         <div className="space-y-2">
           <h1 className="text-4xl font-bold text-white">Exams</h1>
-          <p className="text-gray-400 text-sm">Manage all your assessments</p>
+          <p className="text-slate-400 text-sm">Manage all your assessments</p>
         </div>
         <Link href="/exams/new">
           <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-lg shadow-blue-500/20 transition-all duration-300 h-10">
@@ -76,9 +76,9 @@ export default function ExamsPage() {
           placeholder="Search exams..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full px-4 py-2 pl-10 bg-slate-800 border border-slate-700 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none text-white placeholder:text-gray-500 transition-all duration-300"
+          className="w-full px-4 py-2 pl-10 bg-slate-800 border border-slate-700 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none text-white placeholder:text-slate-500 transition-all duration-300"
         />
-        <svg className="absolute left-3 top-2.5 w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="absolute left-3 top-2.5 w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
         </svg>
       </div>
@@ -88,7 +88,7 @@ export default function ExamsPage() {
         <Card className="border border-slate-700 bg-slate-900/50 backdrop-blur-xl shadow-lg relative z-10">
           <CardContent className="flex flex-col items-center justify-center py-12">
             <div className="animate-spin rounded-full h-10 w-10 border-2 border-slate-700 border-t-blue-500" />
-            <p className="text-gray-400 mt-3 text-sm">Loading exams...</p>
+            <p className="text-slate-400 mt-3 text-sm">Loading exams...</p>
           </CardContent>
         </Card>
       ) : filteredExams.length === 0 ? (
@@ -100,7 +100,7 @@ export default function ExamsPage() {
             <h3 className="text-base font-semibold text-white">
               {exams.length === 0 ? 'No exams yet' : 'No exams found'}
             </h3>
-            <p className="text-gray-400 text-sm mt-2 max-w-xs text-center">
+            <p className="text-slate-400 text-sm mt-2 max-w-xs text-center">
               {exams.length === 0
                 ? 'Create your first exam to start grading'
                 : 'Try adjusting your search'}
@@ -119,11 +119,11 @@ export default function ExamsPage() {
           <Table>
             <TableHeader>
               <TableRow className="border-b border-slate-700">
-                <TableHead className="text-gray-300 font-semibold text-sm">Title</TableHead>
-                <TableHead className="text-gray-300 font-semibold text-sm">Subject</TableHead>
-                <TableHead className="text-gray-300 font-semibold text-sm">Questions</TableHead>
-                <TableHead className="text-gray-300 font-semibold text-sm">Created</TableHead>
-                <TableHead className="text-right text-gray-300 font-semibold text-sm">Actions</TableHead>
+                <TableHead className="text-slate-300 font-semibold text-sm">Title</TableHead>
+                <TableHead className="text-slate-300 font-semibold text-sm">Subject</TableHead>
+                <TableHead className="text-slate-300 font-semibold text-sm">Questions</TableHead>
+                <TableHead className="text-slate-300 font-semibold text-sm">Created</TableHead>
+                <TableHead className="text-right text-slate-300 font-semibold text-sm">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -133,13 +133,13 @@ export default function ExamsPage() {
                   className="border-b border-slate-700 hover:bg-slate-800/50 transition-colors duration-200"
                 >
                   <TableCell className="font-medium text-white">{exam.title}</TableCell>
-                  <TableCell className="text-gray-400">{exam.subject}</TableCell>
+                  <TableCell className="text-slate-400">{exam.subject}</TableCell>
                   <TableCell>
                     <Badge className="bg-blue-600/20 text-blue-300 border border-blue-500/30 font-medium text-xs">
                       {exam.questions?.length || 0}
                     </Badge>
                   </TableCell>
-                  <TableCell className="text-gray-400 text-sm">
+                  <TableCell className="text-slate-400 text-sm">
                     {new Date(exam.created_at).toLocaleDateString()}
                   </TableCell>
                   <TableCell className="text-right">

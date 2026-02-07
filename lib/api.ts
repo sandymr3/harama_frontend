@@ -87,10 +87,16 @@ export interface Grade {
   submission_id: string
   question_id: string
   final_score: number
-  ai_score: number
+  max_score: number
+  ai_score?: number
+  override_score?: number
   confidence: number
   reasoning: string
+  criteria_met?: string[]
+  mistakes_found?: string[]
+  ai_evaluator_id?: string
   status: string
+  created_at: string
   updated_at: string
 }
 
@@ -313,9 +319,12 @@ export async function getFeedback(
 }
 
 // Analytics Endpoints
-export async function getGradingTrends() {
+export async function getGradingTrends(examId?: string) {
   const headers = await getAuthHeaders()
-  const response = await fetch(`${API_BASE}/api/v1/analytics/grading-trends`, {
+  const url = examId
+    ? `${API_BASE}/api/v1/analytics/grading-trends?exam_id=${examId}`
+    : `${API_BASE}/api/v1/analytics/grading-trends`
+  const response = await fetch(url, {
     headers,
   })
 
@@ -346,15 +355,8 @@ export async function exportGrades(examId: string, format: string = 'csv') {
   const headers = await getAuthHeaders()
   const response = await fetch(`${API_BASE}/api/v1/exams/${examId}/export`, {
     method: 'POST',
-    headers: {
-      ...headers,
-      Accept:
-        format === 'csv'
-          ? 'text/csv'
-          : format === 'xlsx'
-            ? 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-            : 'application/pdf',
-    },
+    headers,
+    body: JSON.stringify({ format }),
   })
 
   if (!response.ok) {
@@ -382,11 +384,12 @@ export async function adaptRubric(questionId: string) {
   return response.json()
 }
 
-export async function getAuditLogs(entityId: string) {
+export async function getAuditLogs(entityId: string, entityType: string = 'submission') {
   const headers = await getAuthHeaders()
-  const response = await fetch(`${API_BASE}/api/v1/audit/${entityId}`, {
-    headers,
-  })
+  const response = await fetch(
+    `${API_BASE}/api/v1/audit/${entityId}?type=${entityType}`,
+    { headers }
+  )
 
   if (!response.ok) {
     throw new Error('Failed to get audit logs')

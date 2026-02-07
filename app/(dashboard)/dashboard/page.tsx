@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { listExams, getGradingTrends } from '@/lib/api'
+import { listExams } from '@/lib/api'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -38,7 +38,8 @@ export default function DashboardPage() {
 
         const [examsData, trendsData] = await Promise.all([
           listExams().catch(() => []),
-          getGradingTrends().catch(() => null),
+          // getGradingTrends requires exam_id; skip on dashboard overview
+          Promise.resolve(null),
         ])
 
         setExams(examsData || [])
@@ -101,7 +102,7 @@ export default function DashboardPage() {
       {/* Welcome Section */}
       <div className="space-y-2 relative z-10">
         <h1 className="text-4xl font-bold text-white">Dashboard</h1>
-        <p className="text-gray-400">
+        <p className="text-slate-400">
           Welcome back, <span className="font-semibold text-white">{user?.user_metadata?.full_name || user?.email}</span>
         </p>
       </div>
@@ -118,14 +119,14 @@ export default function DashboardPage() {
             >
               <div className={`absolute top-0 right-0 w-28 h-28 bg-gradient-to-br ${stat.color} opacity-5 rounded-full -mr-10 -mt-10 group-hover:opacity-10 transition-all duration-300`} />
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-semibold text-gray-300">{stat.title}</CardTitle>
+                <CardTitle className="text-sm font-semibold text-slate-300">{stat.title}</CardTitle>
                 <div className={`p-2 rounded-lg ${stat.bgColor}`}>
                   <Icon className={`w-4 h-4 text-transparent bg-clip-text bg-gradient-to-br ${stat.color}`} />
                 </div>
               </CardHeader>
               <CardContent>
                 <div className="text-3xl font-bold text-white">{stat.value}</div>
-                <p className="text-xs text-gray-500 mt-2">Real-time</p>
+                <p className="text-xs text-slate-500 mt-2">Real-time</p>
               </CardContent>
             </Card>
           )
@@ -137,7 +138,7 @@ export default function DashboardPage() {
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-2xl font-bold text-white">Recent Exams</h2>
-            <p className="text-gray-400 text-sm mt-1">Manage and monitor your assessments</p>
+            <p className="text-slate-400 text-sm mt-1">Manage and monitor your assessments</p>
           </div>
           <Link href="/exams/new">
             <Button className="bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-lg shadow-blue-500/20 transition-all duration-300 h-9">
@@ -151,7 +152,7 @@ export default function DashboardPage() {
           <Card className="border border-slate-700 bg-slate-900/50 backdrop-blur-xl shadow-lg">
             <CardContent className="flex flex-col items-center justify-center py-12">
               <div className="animate-spin rounded-full h-10 w-10 border-2 border-slate-700 border-t-blue-500" />
-              <p className="text-gray-400 mt-3 text-sm">Loading exams...</p>
+              <p className="text-slate-400 mt-3 text-sm">Loading exams...</p>
             </CardContent>
           </Card>
         ) : exams.length === 0 ? (
@@ -161,7 +162,7 @@ export default function DashboardPage() {
                 <BookOpen className="w-6 h-6 text-blue-400" />
               </div>
               <h3 className="text-base font-semibold text-white">No exams yet</h3>
-              <p className="text-gray-400 text-sm mt-2 max-w-xs text-center">
+              <p className="text-slate-400 text-sm mt-2 max-w-xs text-center">
                 Create your first exam to start grading
               </p>
               <Link href="/exams/new" className="mt-4">
@@ -183,7 +184,7 @@ export default function DashboardPage() {
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
                         <h3 className="font-semibold text-white group-hover:text-blue-400 transition-colors">{exam.title}</h3>
-                        <p className="text-sm text-gray-400 mt-1 flex gap-3">
+                        <p className="text-sm text-slate-400 mt-1 flex gap-3">
                           <span>{exam.subject}</span>
                           <span>•</span>
                           <span>{exam.questions?.length || 0} questions</span>
